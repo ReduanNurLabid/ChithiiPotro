@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chithipotro - Anonymous Inbox</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>Chithipotro</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="signup.html">Signup</a></li>
+                <li><a href="contacts.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="inbox-container">
+            <div class="university-info">
+                <h1>Anonymous Inbox</h1>
+            </div>
+            <div class="chat-area">
+                <div class="skipped-message" id="skippedMessage">
+                    You have skipped the conversation!
+                </div>
+                <div class="nextMessage" id="nextMessage">
+                    Searching..
+                </div>
+            
+                <div class="message-thread">
+                <h4>This is the start of the conversation</h4>
+
+                    <!-- Message templates -->
+                    <template id="received-message-template">
+                        <div class="received-message">
+                            <span class="received-message-text">I am from bangladesh</span>
+                            <div class="time"><span class="message-time"></span></div>
+                        </div>
+                    </template>
+                    <template id="sent-message-template">
+                        <div class="sent-message">
+                            <span class="sent-message-text"></span>
+                            <div class="time"><span class="message-time"></span></div>
+                        </div>
+                    </template>
+
+                    <!-- Actual messages -->
+                    <div class="received-message">
+                        <span class="received-message-text">Hello, how are you?</span>
+                        <div class="time"><span class="message-time">12:00 PM</span></div>
+                    </div>
+                    <div class="received-message">
+                        <span class="received-message-text">Hello, how are you?</span>
+                        <div class="time"><span class="message-time">12:00 PM</span></div>
+                    </div>                    <div class="received-message">
+                        <span class="received-message-text">Hello, how are you?</span>
+                        <div class="time"><span class="message-time">12:00 PM</span></div>
+                    </div>                    <div class="received-message">
+                        <span class="received-message-text">Hello, how are you?</span>
+                        <div class="time"><span class="message-time">12:00 PM</span></div>
+                    </div>                    <div class="received-message">
+                        <span class="received-message-text">Hello, how are you?</span>
+                        <div class="time"><span class="message-time">12:00 PM</span></div>
+                    </div>
+                    <div class="sent-message">
+                        <span class="sent-message-text">I'm good, thanks! How about you?</span>
+                        <div class="time"><span class="message-time">12:05 PM</span></div>
+                    </div>
+                    <div class="received-message">
+                        <span class="received-message-text">I'm good too, just got back from class. Can I be your friend btw?</span>
+                        <div class="time"><span class="message-time">12:10 PM</span></div>
+                    </div>
+                    <div class="sent-message">
+                        <span class="sent-message-text">What class did you just have?</span>
+                        <div class="time"><span class="message-time">12:12 PM</span></div>
+                    </div>
+                    <div class="received-message">
+                        <span class="received-message-text">I had psychology. It's really interesting!</span>
+                        <div class="time"><span class="message-time">12:15 PM</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="send-message-form">    
+                <form id="send-message-form">
+                <input type="text" id="message-input" placeholder="Type a message...">
+                <button type="submit">Send</button></form>
+            </div>
+
+            <div class="skip-btn">
+                <button id="skipButton" type="button">Skip This conversation</button>
+            </div>
+        
+
+            <script>
+                // Get elements
+                const button = document.getElementById('skipButton');
+                const content = document.querySelector('.message-thread');
+                const skippedMessage = document.getElementById('skippedMessage');
+                const nextMessage = document.getElementById('nextMessage');        
+                // Variable to track the button's state
+                let button_state = 'skip'
+        
+                // Add an event listener for click events
+                button.addEventListener('click', function() {
+                    if (button_state == 'skip') {
+                        // Change button text to "Confirm Skip"
+                        button.textContent = 'Confirm Skip';
+                        button.style.backgroundColor = '#dc3545'; // Change color to red
+                        // Set state to confirming
+                        button_state = 'confirm'
+
+
+                        
+                    } else if (button_state == 'confirm'){
+                        // Hide the content
+                        content.style.display = 'none';
+                        // Show skipped message
+                        skippedMessage.style.display = 'block';
+                        nextMessage.style.display = 'none'
+                        // Reset button state
+                        button_state = 'next'
+                        button.textContent = 'Next';
+                        button.style.backgroundColor = 'Green'; // Reset color
+                    }
+                    else if (button_state == 'next'){                        
+                        // Hide the content
+                        content.style.display = 'none';
+                        // Show skipped message
+                        skippedMessage.style.display = 'none';
+                        nextMessage.style.display = 'block'
+                        // Reset button state
+                        button.textContent = 'Skip This conversation';
+                        button.style.backgroundColor = '#007bff'; 
+                        button_state = 'skip'
+                    }
+
+                });
+            </script>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Chithipotro. All rights reserved.</p>
+    </footer>
+</body>
+</html>
